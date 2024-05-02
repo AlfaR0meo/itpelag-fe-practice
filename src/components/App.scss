@@ -1,0 +1,141 @@
+.page-wrapper {
+    margin-inline: auto;
+    max-width: 1000px;
+    padding: 1em;
+
+    > *:not(:last-child) {
+        margin-block-end: 2.5rem;
+        margin-inline: auto;
+    }
+
+    @media (max-width: 700px) {
+        > *:not(:last-child) {
+            margin-block-end: 1.5rem;
+        }
+    }
+}
+
+h1 {
+    font-size: var(--fs-800);
+    font-weight: 600;
+    line-height: 1.3;
+    text-wrap: balance;
+    text-align: center;
+
+    @media (max-width: 400px) {
+        font-size: 1.5rem;
+    }
+}
+
+.buttons-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+label {
+    width: fit-content;
+    padding: .75em 1em;
+
+    font-weight: 500;
+
+    border-radius: .25em;
+    color: var(--clr-accent);
+    background-color: var(--clr-dark);
+
+    outline: 3px solid;
+
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    
+    > span {
+        display: block;
+    }
+
+    @media (any-hover: hover) {
+        &:hover {
+            background-color: color-mix(in srgb, var(--clr-dark), black);
+        }
+    }
+
+    &:active {
+        > span {
+            transform: translateY(1px);
+        }
+    }
+}
+
+.selected-file-name {
+    padding-block: .5em;
+    font-weight: 600;
+    text-wrap: nowrap;
+    line-height: 1.5;
+    overflow-x: auto;
+
+    @supports (scrollbar-width: auto) {
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-accent) transparent;
+    }
+
+    > span {
+        font-family: var(--ff-mono);
+        font-weight: 400;
+    }
+}
+
+.uploaded-image {
+    max-width: 300px;
+
+    @media (max-width: 700px) {
+        max-width: 200px;
+    }
+    @media (max-width: 350px) {
+        max-width: 100%;
+    }
+}
+
+.qr-code-read-result {
+    padding-block: .5em;
+
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.5;
+    text-wrap: nowrap;
+
+    overflow-x: auto;
+
+    @supports (scrollbar-width: auto) {
+        scrollbar-width: thin;
+        scrollbar-color: var(--clr-accent) transparent;
+    }
+
+    > * {
+        padding: 0.5em;
+
+        font-family: var(--ff-mono);
+        font-weight: 400;
+
+        color: var(--clr-accent);
+        background-color: var(--clr-dark);
+
+        border-radius: 0.25em;
+
+        &:empty {
+            display: none;
+        }
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: color-mix(in srgb, var(--clr-dark), black);
+            }
+        }
+    }
+}

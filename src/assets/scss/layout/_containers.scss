@@ -1,0 +1,22 @@
+/* ■■■■■ КОНТЕЙНЕРЫ ■■■■■■■■■■■■■■■■■■ */
+.container {
+    width: min(1000px, 100%);
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+.container--lg {
+    width: min(1200px, 100%);
+}
+
+.container--md {
+    width: min(800px, 100%);
+}
+
+.container--sm {
+    width: min(500px, 100%);
+}
+
+.container--xs {
+    width: min(320px, 100%);
+}

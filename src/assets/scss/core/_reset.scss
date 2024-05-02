@@ -1,0 +1,129 @@
+/* ■■■■■ ОБНУЛЯЮЩИЕ СТИЛИ ■■■■■■■■■■■■ */
+body {
+    margin: 0;
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+header,
+nav,
+main,
+footer,
+section,
+aside,
+picture,
+video,
+canvas,
+svg,
+label,
+source,
+iframe,
+embed {
+    display: block;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+
+    font-style: italic;
+    //background-color: grey;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+}
+
+p,
+dl,
+dd,
+figure {
+    margin: 0;
+}
+
+input,
+button,
+textarea,
+select {
+    display: block;
+    
+    // font-family: inherit;
+    // font-size: inherit;
+    // line-height: inherit;
+    font: inherit;
+
+    border: none;
+    background-color: transparent;
+}
+
+button {
+    padding: 0;
+}
+
+input[type=radio],
+input[type=checkbox] {
+    margin: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button,
+select,
+input[type=range],
+input[type=color],
+input[type=submit],
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    font-family: inherit;
+}
+
+dialog {
+    border: none;
+    padding: 0;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+legend {
+    padding: 0;
+}
+
+summary {
+    display: block;
+}

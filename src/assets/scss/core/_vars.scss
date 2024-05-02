@@ -1,0 +1,28 @@
+/* ■■■■■ ПЕРЕМЕННЫЕ ■■■■■■■■■■■■■■■■■■ */
+:root {
+    --clr-accent: dodgerblue;
+    --clr-dark: #222;
+    --clr-light: #fff;
+    --clr-bg: #333;
+
+    --ff-body: "Rubik", sans-serif;
+    --ff-system: system-ui;
+    --ff-mono: monospace;
+
+    --fs-100: calc(var(--fs-400) * 0.625);  //10px
+    --fs-200: calc(var(--fs-400) * 0.75);   //12px
+    --fs-300: calc(var(--fs-400) * 0.875);  //14px
+    --fs-400: 1rem;                         //16px
+    --fs-500: calc(var(--fs-400) * 1.125);  //18px
+    --fs-600: calc(var(--fs-400) * 1.25);   //20px
+    --fs-700: calc(var(--fs-400) * 1.5);    //24px
+    --fs-800: calc(var(--fs-400) * 3);      //48px
+    --fs-900: calc(var(--fs-400) * 4);      //64px
+    --fs-1000: calc(var(--fs-400) * 5);     //80px
+
+    --transition: 100ms;
+
+    @media (max-width: 700px) {
+        --fs-400: 0.75rem;
+    }
+}
