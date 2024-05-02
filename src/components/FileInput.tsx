@@ -12,6 +12,17 @@ const readerOptions: ReaderOptions = {
     maxNumberOfSymbols: 1,
 };
 
+// const imageFile = await fetch(
+//     "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Hello%20world!",
+// ).then((resp) => resp.blob());
+
+// const imageFileReadResults = await readBarcodesFromImageFile(
+//     imageFile,
+//     readerOptions,
+// );
+
+// console.log(imageFileReadResults[0].text); // Hello world!
+
 export default function FileInput() {
     const [file, setFile] = useState<string>();
     const [fileName, setFileName] = useState<string>();
@@ -25,7 +36,6 @@ export default function FileInput() {
 
             setResult(await readBarcodesFromImageFile(imageFile, readerOptions));
         }
-
     }
 
     const urlify = (text: string): string => {
@@ -38,12 +48,18 @@ export default function FileInput() {
     return (
         <>
             <div className='buttons-row'>
-                <label><span>Сканировать</span></label>
+                <label className='disabled'><span>Сканировать</span></label>
                 <label htmlFor="fileInput"><span>Выбрать файл</span></label>
                 <input className='visually-hidden' id='fileInput' type='file' accept='image/jpeg,image/png' onChange={handleChange}></input>
             </div>
+
             {fileName && <div className='selected-file-name'>Выбранный файл: <span>{fileName}</span></div>}
+
             {file && <img className='uploaded-image' src={file} alt="Uploaded File" />}
+
+            {console.log(result)}
+            {(result?.length === 0 || result === undefined) ? <span>true</span> : <span>false</span>}
+
             {/* {result[0]?.text && <div className='qr-code-read-result'>Результат: <span>{urlify(result[0]?.text)}</span><div />} */}
         </>
     );

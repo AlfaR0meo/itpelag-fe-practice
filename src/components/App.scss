@@ -5,7 +5,6 @@
 
     > *:not(:last-child) {
         margin-block-end: 2.5rem;
-        margin-inline: auto;
     }
 
     @media (max-width: 700px) {
@@ -51,6 +50,11 @@ label {
     user-select: none;
     cursor: pointer;
     transition: background-color var(--transition);
+
+    &.disabled {
+        color: grey;
+        pointer-events: none;
+    }
     
     > span {
         display: block;
@@ -89,6 +93,7 @@ label {
 
 .uploaded-image {
     max-width: 300px;
+    margin-inline: auto;
 
     @media (max-width: 700px) {
         max-width: 200px;
