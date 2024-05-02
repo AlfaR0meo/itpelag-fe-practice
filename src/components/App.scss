@@ -103,26 +103,32 @@ label {
     }
 }
 
-.qr-code-read-result {
+.qr-code-result {
     padding-block: .5em;
-
-    display: flex;
-    align-items: center;
-    gap: 1em;
-
-    text-align: center;
     font-weight: 600;
-    line-height: 1.5;
-    text-wrap: nowrap;
+    line-height: 1.6;
 
-    overflow-x: auto;
+    &--success {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        text-wrap: nowrap;
+        overflow-x: auto;
 
-    @supports (scrollbar-width: auto) {
-        scrollbar-width: thin;
-        scrollbar-color: var(--clr-accent) transparent;
+        @supports (scrollbar-width: thin) {
+            scrollbar-width: thin;
+            scrollbar-color: var(--clr-accent) transparent;
+        }
     }
 
-    > * {
+    &--error {
+        padding-inline: .5em;
+        font-weight: 400;
+        background-color: hsl(25 60% 50%);
+        border-radius: 0.25em;
+    }
+
+    > span {
         padding: 0.5em;
 
         font-family: var(--ff-mono);

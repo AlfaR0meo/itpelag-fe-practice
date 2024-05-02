@@ -57,10 +57,10 @@ export default function FileInput() {
 
             {file && <img className='uploaded-image' src={file} alt="Uploaded File" />}
 
-            {console.log(result)}
-            {(result?.length === 0 || result === undefined) ? <span>true</span> : <span>false</span>}
-
-            {/* {result[0]?.text && <div className='qr-code-read-result'>Результат: <span>{urlify(result[0]?.text)}</span><div />} */}
+            {result && (result?.length === 0 ?
+                <div className='qr-code-result qr-code-result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div> :
+                <div className='qr-code-result qr-code-result--success'>Результат: <span>{urlify(result[0]?.text)}</span></div>
+            )}
         </>
     );
 }
