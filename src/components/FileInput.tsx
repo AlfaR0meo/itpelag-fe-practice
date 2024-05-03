@@ -12,17 +12,6 @@ const readerOptions: ReaderOptions = {
     maxNumberOfSymbols: 1,
 };
 
-// const imageFile = await fetch(
-//     "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Hello%20world!",
-// ).then((resp) => resp.blob());
-
-// const imageFileReadResults = await readBarcodesFromImageFile(
-//     imageFile,
-//     readerOptions,
-// );
-
-// console.log(imageFileReadResults[0].text); // Hello world!
-
 export default function FileInput() {
     const [file, setFile] = useState<string>();
     const [fileName, setFileName] = useState<string>();
@@ -38,6 +27,7 @@ export default function FileInput() {
         }
     }
 
+    // FIXME:
     const urlify = (text: string): string => {
         const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return text.replace(urlRegex, (url) => {

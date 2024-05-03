@@ -7,7 +7,7 @@ export default function App() {
         <div className="page-wrapper">
             <h1>
                 ITpelag FE задание на практику.<br></br>
-                Веб-приложение для сканирования QR-кодов
+                Веб-приложение для считывания информации с QR-кода
             </h1>
             <FileInput />
         </div>
