@@ -28,15 +28,6 @@ export default function FileInput() {
         }
     }
 
-    // FIXME:
-    // const urlify = (text: string): string => {
-    //     const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-
-    //     return text.replace(urlRegex, (url) => {
-    //         return `<a href='${url}' target='_blank' rel='noopener noreferrer'>${url}</a>`;
-    //     })
-    // }
-
     return (
         <>
             <div className='buttons-row'>
