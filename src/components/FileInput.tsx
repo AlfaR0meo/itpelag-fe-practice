@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Result from './Result';
 
 import {
     ReadResult,
@@ -28,12 +29,13 @@ export default function FileInput() {
     }
 
     // FIXME:
-    const urlify = (text: string): string => {
-        const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-        return text.replace(urlRegex, (url) => {
-            return `<a href='${url}' target='_blank' rel='noopener noreferrer'>${url}</a>`;
-        })
-    }
+    // const urlify = (text: string): string => {
+    //     const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+
+    //     return text.replace(urlRegex, (url) => {
+    //         return `<a href='${url}' target='_blank' rel='noopener noreferrer'>${url}</a>`;
+    //     })
+    // }
 
     return (
         <>
@@ -48,8 +50,10 @@ export default function FileInput() {
             {file && <img className='uploaded-image' src={file} alt="Uploaded File" />}
 
             {result && (result?.length === 0 ?
-                <div className='qr-code-result qr-code-result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div> :
-                <div className='qr-code-result qr-code-result--success'>Результат: <span>{urlify(result[0]?.text)}</span></div>
+                // <div className='result result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div> :
+                <Result status={false} /> :
+                // <div className='qr-code-result qr-code-result--success'>Результат: <span dangerouslySetInnerHTML={{ __html: urlify(result[0]?.text) }}></span></div>
+                <Result status={true} innerText={result[0]?.text} />
             )}
         </>
     );

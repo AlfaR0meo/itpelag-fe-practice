@@ -15,7 +15,7 @@ body {
     font-size: var(--fs-600, 1rem);
     font-weight: 400;
     line-height: 1;
-    color: var(--clr-light);
+    color: var(--clr-text);
     background-color: var(--clr-bg, #fff);
 
     @supports (-webkit-tap-highlight-color: transparent) {
