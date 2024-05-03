@@ -20,24 +20,16 @@ h1 {
     text-align: center;
 }
 
-.buttons-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-
-label {
+.qr-btn {
     width: fit-content;
     padding: .75em 1em;
 
-    font-weight: 500;
+    font-weight: 400;
 
     border-radius: .25em;
-    color: var(--clr-accent);
+    color: #fff;
+    background-color: var(--clr-accent);
 
-    outline: 3px solid;
     transition: transform var(--transition);
     will-change: trasform;
 
@@ -51,7 +43,7 @@ label {
         }
     }
 
-    &.disabled {
+    &:disabled {
         color: grey;
         pointer-events: none;
     }

@@ -30,16 +30,11 @@ export default function FileInput() {
 
     return (
         <>
-            <div className='buttons-row'>
-                <label className='scan-btn disabled'><span>Сканировать</span></label>
-                <label className='file-btn' htmlFor="fileInput"><span>Выбрать файл</span></label>
-                <input className='visually-hidden' id='fileInput' type='file' accept='image/jpeg,image/png' onChange={handleChange}></input>
-            </div>
+            <label className='qr-btn qr-btn--file' htmlFor="fileInput"><span>Выбрать файл</span></label>
+            <input className='visually-hidden' id='fileInput' type='file' accept='image/jpeg,image/png' onChange={handleChange}></input>
 
             {fileName && <div className='selected-file-name'>Выбранный файл: <span>{fileName}</span></div>}
-
             {file && <img className='uploaded-image' src={file} alt="Uploaded File" />}
-
             {result && (result?.length === 0 ?
                 <Result status={'error'} /> :
                 <Result status={'success'} innerText={result[0]?.text} />
