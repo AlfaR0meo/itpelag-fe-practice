@@ -1,8 +1,7 @@
 .page-wrapper {
-    margin-inline: auto;
     max-width: 1000px;
-    padding: 1em;
-    border-inline: 2px solid var(--clr-text);
+    margin-inline: auto;
+    padding: 2em 1em;
 
     > *:not(:last-child) {
         margin-block-end: 2rem;
@@ -19,10 +18,6 @@ h1 {
     line-height: 1.3;
     text-wrap: balance;
     text-align: center;
-
-    @media (max-width: 400px) {
-        font-size: 1.5rem;
-    }
 }
 
 .buttons-row {
@@ -41,17 +36,23 @@ label {
 
     border-radius: .25em;
     color: var(--clr-accent);
-    background-color: hsl(from var(--clr-accent) h s l / calc(alpha * .1));
 
     outline: 3px solid;
+    transition: transform var(--transition);
+    will-change: trasform;
 
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
 
+    @media (any-hover: hover) {
+        &:hover {
+            transform: translateY(2px);
+        }
+    }
+
     &.disabled {
         color: grey;
-        background-color: hsl(from grey h s l / calc(alpha * .1));
         pointer-events: none;
     }
     
@@ -113,42 +114,38 @@ label {
             scrollbar-width: thin;
             scrollbar-color: var(--clr-accent) transparent;
         }
+
+        > span {
+            padding: 0.5em;
+    
+            font-family: var(--ff-mono);
+            font-weight: 400;
+    
+            color: hsl(from var(--clr-success) h s calc(l + .2));
+            background-color: hsl(from var(--clr-success) h s l / calc(alpha * .1));
+    
+            border-radius: 0.25em;
+    
+            > a {
+                color: inherit;
+                text-decoration: underline;
+                transition: color var(--transition);
+    
+                @media (any-hover: hover) {
+                    &:hover {
+                        color: var(--clr-accent);
+                    }
+                }
+            }
+        }
     }
 
     &--error {
         width: fit-content;
         padding-inline: .5em;
         font-weight: 400;
-        background-color: hsl(0 60% 50%);
-        color: white;
+        color: hsl(from var(--clr-error) h s calc(l + .3));
+        background-color: hsl(from var(--clr-error) h s l / calc(alpha * .1));
         border-radius: 0.25em;
-    }
-
-    > span {
-        padding: 0.5em;
-
-        font-family: var(--ff-mono);
-        font-weight: 400;
-
-        color: var(--clr-accent);
-        background-color: hsl(from var(--clr-accent) h s l / calc(alpha * .1));
-
-        border-radius: 0.25em;
-
-        > a {
-            color: inherit;
-            text-decoration: underline;
-            transition: color var(--transition);
-
-            @media (any-hover: hover) {
-                &:hover {
-                    color: hsl(from var(--clr-accent) calc(h + 180) s l);
-                }
-            }
-        }
-
-        &:empty {
-            display: none;
-        }
     }
 }

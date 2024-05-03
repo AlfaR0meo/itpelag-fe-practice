@@ -1,9 +1,11 @@
+type Status = 'success' | 'error';
+
 interface ResultProps {
-    status: boolean,
+    status: Status,
     innerText?: string
 }
 
-export default function Result({ status, innerText }: ResultProps) {
+export default function Result({ status, innerText = '' }: ResultProps) {
 
     const urlify = (text: string): string => {
         const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
@@ -13,13 +15,14 @@ export default function Result({ status, innerText }: ResultProps) {
         });
     }
 
-    if (!status) {
+    if (status === 'error') {
         return (
             <div className='result result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div>
         );
-    } else {
+    }
+    if (status === 'success') {
         return (
-            <div className='result result--success'>Результат: <span dangerouslySetInnerHTML={{ __html: urlify(innerText) ?? '' }}></span></div>
+            <div className='result result--success'>Результат: <span dangerouslySetInnerHTML={{ __html: urlify(innerText) }}></span></div>
         );
     }
 }
