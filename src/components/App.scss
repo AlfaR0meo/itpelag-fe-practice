@@ -41,28 +41,22 @@ label {
 
     border-radius: .25em;
     color: var(--clr-accent);
-    background-color: var(--clr-text);
+    background-color: hsl(from var(--clr-accent) h s l / calc(alpha * .1));
 
     outline: 3px solid;
 
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
-    transition: background-color var(--transition);
 
     &.disabled {
         color: grey;
+        background-color: hsl(from grey h s l / calc(alpha * .1));
         pointer-events: none;
     }
     
     > span {
         display: block;
-    }
-
-    @media (any-hover: hover) {
-        &:hover {
-            background-color: color-mix(in srgb, var(--clr-text), black);
-        }
     }
 
     &:active {
@@ -137,7 +131,7 @@ label {
         font-weight: 400;
 
         color: var(--clr-accent);
-        background-color: var(--clr-text);
+        background-color: hsl(from var(--clr-accent) h s l / calc(alpha * .1));
 
         border-radius: 0.25em;
 
@@ -148,7 +142,7 @@ label {
 
             @media (any-hover: hover) {
                 &:hover {
-                    color: hsl(from var(--clr-accent) h s calc(l + .2));
+                    color: hsl(from var(--clr-accent) calc(h + 180) s l);
                 }
             }
         }
