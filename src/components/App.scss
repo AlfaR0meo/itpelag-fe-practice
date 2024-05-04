@@ -113,8 +113,8 @@ h1 {
             font-family: var(--ff-mono);
             font-weight: 400;
     
-            color: hsl(from var(--clr-success) h s calc(l + .2));
-            background-color: hsl(from var(--clr-success) h s l / calc(alpha * .1));
+            color: hsl(from var(--clr-success) h s calc(l + .1));
+            background-color: hsl(from var(--clr-success) h s l / calc(alpha * .25));
     
             border-radius: 0.25em;
     
@@ -136,15 +136,37 @@ h1 {
         width: fit-content;
         padding-inline: .5em;
         font-weight: 400;
-        color: hsl(from var(--clr-error) h s calc(l + .3));
-        background-color: hsl(from var(--clr-error) h s l / calc(alpha * .1));
+        color: hsl(from var(--clr-error) h s calc(l + .1));
+        background-color: hsl(from var(--clr-error) h s l / calc(alpha * .25));
         border-radius: 0.25em;
     }
 }
 
-video {
+.video-wrapper {
+    position: relative;
     margin-block: 1em;
-    aspect-ratio: 16 / 9;
-    height: 300px;
-    outline: 3px solid hotpink;
+    aspect-ratio: 1;
+    width: min(400px, 100%);
+    background-color: black;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+    &::after {
+        content: "QR-код должен попадать в рамку";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        aspect-ratio: 1;
+        pointer-events: none;
+        background-color: transparent;
+        border: 3px dashed whitesmoke;
+        box-shadow: 0 0 0 100vmin hsl(0 0% 0% / 60%);
+    }
+
+    > video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }

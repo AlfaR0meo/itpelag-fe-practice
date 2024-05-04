@@ -16,7 +16,7 @@ const readerOptions: ReaderOptions = {
 export default function FileInput() {
     const [file, setFile] = useState<string>();
     const [fileName, setFileName] = useState<string>();
-    const [result, setResult] = useState<ReadResult[]>();
+    const [fileResult, setFileResult] = useState<ReadResult[]>();
 
     async function handleChange(event: any) {
         if (event.target.files[0]) {
@@ -24,7 +24,7 @@ export default function FileInput() {
             setFile(URL.createObjectURL(imageFile));
             setFileName(imageFile.name)
 
-            setResult(await readBarcodesFromImageFile(imageFile, readerOptions));
+            setFileResult(await readBarcodesFromImageFile(imageFile, readerOptions));
         }
     }
 
@@ -35,9 +35,10 @@ export default function FileInput() {
 
             {fileName && <div className='selected-file-name'>Выбранный файл: <span>{fileName}</span></div>}
             {file && <img className='uploaded-image' src={file} alt="Uploaded File" />}
-            {result && (result?.length === 0 ?
+
+            {fileResult && (fileResult?.length === 0 ?
                 <Result status={'error'} /> :
-                <Result status={'success'} innerText={result[0]?.text} />
+                <Result status={'success'} innerText={fileResult[0]?.text} />
             )}
         </>
     );
