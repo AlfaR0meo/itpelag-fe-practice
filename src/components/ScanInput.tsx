@@ -57,6 +57,11 @@ export default function ScanInput() {
             <button onClick={startScan} className='qr-btn qr-btn--scan' type='button'><span>Сканировать</span></button>
 
             <div className="video-wrapper">
+                <span className='top-left'></span>
+                <span className='top-right'></span>
+                <span className='bottom-left'></span>
+                <span className='bottom-right'></span>
+
                 <video ref={videoRef}></video>
             </div>
             {/* {qrCodeResult && <p>Результат сканирования: {qrCodeResult}</p>} */}
