@@ -29,7 +29,7 @@ export default function FileInput() {
     }
 
     return (
-        <>
+        <div className='file-input'>
             <label className='qr-btn qr-btn--file' htmlFor="fileInput"><span>Выбрать файл</span></label>
             <input className='visually-hidden' id='fileInput' type='file' accept='image/jpeg,image/png' onChange={handleChange}></input>
 
@@ -40,6 +40,6 @@ export default function FileInput() {
                 <Result status={'error'} /> :
                 <Result status={'success'} innerText={fileResult[0]?.text} />
             )}
-        </>
+        </div>
     );
 }

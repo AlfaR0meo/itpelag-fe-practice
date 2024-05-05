@@ -3,7 +3,7 @@ import Result from './Result';
 
 import {
     ReadResult,
-    readBarcodesFromImageFile,
+    readBarcodesFromImageData,
     type ReaderOptions,
 } from "zxing-wasm/reader";
 
@@ -15,9 +15,36 @@ const readerOptions: ReaderOptions = {
 
 export default function ScanInput() {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const [scanResult, setScanResult] = useState<ReadResult[]>();
-    // const [qrCodeResult, setQrCodeResult] = useState('');
     const [error, setError] = useState<string>('');
+    const [test, setTest] = useState<number>(0);
+
+    function detectQRCodeFromVideo() {
+        setInterval(async () => {
+            const video = videoRef.current;
+            const canvas = canvasRef.current;
+
+            setTest(t => t + 1); //работает
+
+            if (canvas && video) {
+                const w = video.videoWidth;
+                const h = video.videoHeight;
+
+                canvas.width = w;
+                canvas.height = h;
+
+                const canvasCtx = canvas.getContext('2d', {
+                    willReadFrequently: true
+                });
+
+                while (canvasCtx && video) {
+                    canvasCtx.drawImage(video, 0, 0, w, h);
+                    setScanResult(await readBarcodesFromImageData(canvasCtx.getImageData(0, 0, w, h), readerOptions));
+                }
+            }
+        }, 1000);
+    }
 
     async function startScan() {
         try {
@@ -44,8 +71,13 @@ export default function ScanInput() {
                 },
                 audio: false
             });
-            videoRef.current.srcObject = videoStream;
-            videoRef.current.play();
+
+            if (videoRef.current !== null) {
+                videoRef.current.srcObject = videoStream;
+                videoRef.current.play();
+            } else return;
+
+            detectQRCodeFromVideo();
         }
         catch (error: any) {
             setError(String(error));
@@ -53,7 +85,7 @@ export default function ScanInput() {
     }
 
     return (
-        <div>
+        <div className='scan-input'>
             <button onClick={startScan} className='qr-btn qr-btn--scan' type='button'><span>Сканировать</span></button>
 
             <div className="video-wrapper">
@@ -63,9 +95,12 @@ export default function ScanInput() {
                 <span className='bottom-right'></span>
 
                 <video ref={videoRef}></video>
+                <canvas hidden></canvas>
             </div>
-            {/* {qrCodeResult && <p>Результат сканирования: {qrCodeResult}</p>} */}
+
             {error && <div className="result result--error">{error}</div>}
+
+            {test && <div>{test}</div>}
 
             {scanResult && (scanResult?.length === 0 ?
                 <Result status={'error'} /> :
