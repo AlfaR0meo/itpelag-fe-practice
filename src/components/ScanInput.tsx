@@ -95,7 +95,7 @@ export default function ScanInput() {
                 <span className='bottom-right'></span>
 
                 <video ref={videoRef}></video>
-                <canvas hidden></canvas>
+                <canvas ref={canvasRef} hidden></canvas>
             </div>
 
             {error && <div className="result result--error">{error}</div>}
