@@ -157,14 +157,18 @@ h1 {
 }
 
 .video-wrapper {
+    --brr: 1em;
     position: relative;
     aspect-ratio: 1;
     width: min(400px, 100%);
     background-color: black;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+    border-radius: var(--brr);
+    overflow: hidden;
+    // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     &::after {
-        --qr-area-width: 80%;
+        --qr-area-width: 100%; // 70%
         content: "";
         position: absolute;
         top: 50%;
@@ -174,8 +178,8 @@ h1 {
         width: var(--qr-area-width);
         aspect-ratio: 1;
 
-        border-radius: .5em;
-        box-shadow: 0 0 0 100vmin hsl(0 0% 0% / 60%);
+        border-radius: inherit;
+        // box-shadow: 0 0 0 100vmin hsl(0 0% 0% / 60%);
         pointer-events: none;
     }
 
@@ -191,30 +195,30 @@ h1 {
         border: var(--br-width) solid var(--br-color);
 
         &.top-left {
-            top: calc(15% - var(--br-width));
-            left: calc(15% - var(--br-width));
-            border-top-left-radius: 1em;
+            top: calc(10% - var(--br-width));
+            left: calc(10% - var(--br-width));
+            border-top-left-radius: var(--brr);
             border-bottom: none;
             border-right: none;
         }
         &.top-right {
-            top: calc(15% - var(--br-width));
-            right: calc(15% - var(--br-width));
-            border-top-right-radius: 1em;
+            top: calc(10% - var(--br-width));
+            right: calc(10% - var(--br-width));
+            border-top-right-radius: var(--brr);
             border-bottom: none;
             border-left: none;
         }
         &.bottom-left {
-            bottom: calc(15% - var(--br-width));
-            left: calc(15% - var(--br-width));
-            border-bottom-left-radius: 1em;
+            bottom: calc(10% - var(--br-width));
+            left: calc(10% - var(--br-width));
+            border-bottom-left-radius: var(--brr);
             border-top: none;
             border-right: none;
         }
         &.bottom-right {
-            bottom: calc(15% - var(--br-width));
-            right: calc(15% - var(--br-width));
-            border-bottom-right-radius: 1em;
+            bottom: calc(10% - var(--br-width));
+            right: calc(10% - var(--br-width));
+            border-bottom-right-radius: var(--brr);
             border-top: none;
             border-left: none;
         }
