@@ -164,7 +164,7 @@ h1 {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     &::after {
-        --qr-area-width: 70%;
+        --qr-area-width: 80%;
         content: "";
         position: absolute;
         top: 50%;
@@ -225,10 +225,10 @@ h1 {
         height: 100%;
         object-fit: cover;
     }
-}
 
-canvas {
-    display: none;
+    > canvas {
+        display: none;
+    }
 }
 
 .pictures {
@@ -238,5 +238,9 @@ canvas {
 
     > img {
         max-width: 100px;
+    }
+
+    &:empty {
+        display: none;
     }
 }

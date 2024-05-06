@@ -16,18 +16,15 @@ const readerOptions: ReaderOptions = {
 export default function ScanInput() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const picturesRef = useRef<HTMLDivElement>(null);
     const [scanResult, setScanResult] = useState<ReadResult[]>();
     const [error, setError] = useState<string>('');
-    const [test, setTest] = useState<number>(0);
-    const [info, setInfo] = useState<number>(0);
+    const [info, setInfo] = useState<string>('');
 
     function detectQRCodeFromVideo() {
         const videoElement = videoRef.current;
         const canvasElement = canvasRef.current;
-        const picturesElement = picturesRef.current;
 
-        if (canvasElement && videoElement && picturesElement) {
+        if (canvasElement && videoElement) {
             canvasElement.width = videoElement.offsetWidth;
             canvasElement.height = videoElement.offsetHeight;
 
@@ -37,20 +34,17 @@ export default function ScanInput() {
 
             if (ctx) {
                 setInterval(async () => {
-                    ctx.drawImage(videoElement, 0, 0);
-                    let imgData = canvasElement.toDataURL('image/png');
-                    let imgElement = document.createElement('img');
-                    imgElement.src = imgData;
-                    imgElement.alt = 'Scan picture';
-                    picturesElement.insertAdjacentElement('beforeend', imgElement);
+                    ctx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+                    let canvasElementImageData = ctx.getImageData(0, 0, canvasElement.width, canvasElement.height);
 
-                    setInfo(Math.round(Math.random() * 100));
+                    try {
+                        setScanResult(await readBarcodesFromImageData(canvasElementImageData, readerOptions));
+                        setInfo('OKEY');
+                    } catch (error: any) {
+                        setError(String(error));
+                    }
                 }, 1000);
             }
-
-            // setTest(t => t + 1);
-            // ctx.drawImage(videoElement, 0, 0);
-            // setScanResult(await readBarcodesFromImageData(canvasCtx.getImageData(0, 0, w, h), readerOptions));
         }
     }
 
@@ -108,8 +102,6 @@ export default function ScanInput() {
 
             {error && <div className="result result--error">{error}</div>}
             <div className="result result--info">{info}</div>
-            {/* <div>Тест инкремент переменной: {test}</div> */}
-            <div ref={picturesRef} className="pictures"></div>
 
             {scanResult && (scanResult?.length === 0 ?
                 <Result status={'error'} /> :
