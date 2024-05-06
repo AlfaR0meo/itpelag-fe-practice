@@ -1,14 +1,10 @@
 .page-wrapper {
     max-width: 1000px;
     margin-inline: auto;
-    padding: 2em 1em;
+    padding: 1em;
 
     > *:not(:last-child) {
-        margin-block-end: 2rem;
-
-        @media (max-width: 700px) {
-            margin-block-end: 1rem;
-        }
+        margin-block-end: 3rem;
     }
 }
 
@@ -59,6 +55,9 @@ h1 {
     }
 }
 
+
+
+
 .selected-file-name {
     padding-block: .5em;
     font-weight: 600;
@@ -90,8 +89,11 @@ h1 {
     }
 }
 
+
+
+
 .result {
-    padding-block: .5em;
+    padding-block: 1em;
     font-weight: 600;
     line-height: 1.6;
 
@@ -108,13 +110,13 @@ h1 {
         }
 
         > span {
-            padding: 0.5em;
+            padding: 1em;
     
             font-family: var(--ff-mono);
             font-weight: 400;
     
             color: hsl(from var(--clr-success) h s calc(l + .1));
-            background-color: hsl(from var(--clr-success) h s l / calc(alpha * .25));
+            background-color: color-mix(in srgb, currentColor, transparent 80%);
     
             border-radius: 0.25em;
     
@@ -132,29 +134,37 @@ h1 {
         }
     }
 
-    &--error {
+    &--error, &--info {
         width: fit-content;
-        padding-inline: .5em;
-        font-weight: 400;
-        color: hsl(from var(--clr-error) h s calc(l + .1));
-        background-color: hsl(from var(--clr-error) h s l / calc(alpha * .25));
+        padding: 1em;
+        background-color: color-mix(in srgb, currentColor, transparent 80%);
         border-radius: 0.25em;
+    }
+
+    &--error {
+        color: hsl(from var(--clr-error) h s calc(l + .1));
+    }
+
+    &--info {
+        color: dodgerblue;
+    }
+}
+
+.scan-input, .file-input {
+    > *:not(:last-child) {
+        margin-block-end: 1rem;
     }
 }
 
 .video-wrapper {
     position: relative;
-
-    margin-block: 1em;
     aspect-ratio: 1;
     width: min(400px, 100%);
-
     background-color: black;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     &::after {
         --qr-area-width: 70%;
-        // content: "QR-код должен попадать в рамку";
         content: "";
         position: absolute;
         top: 50%;
@@ -214,5 +224,19 @@ h1 {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+}
+
+canvas {
+    display: none;
+}
+
+.pictures {
+    display: flex;
+    gap: .25em;
+    overflow-x: auto;
+
+    > img {
+        max-width: 100px;
     }
 }
