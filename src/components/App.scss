@@ -164,35 +164,26 @@ h1#app-title {
 }
 
 .result {
-    font-weight: 600;
+    padding: 1em;
+    font-weight: 700;
     line-height: 1.6;
+    background-color: color-mix(in srgb, currentColor, transparent 90%);
+    border-radius: 0.25em;
 
-    &:has(> span:empty) {
+    pre {
+        text-wrap: wrap;
+    }
+
+    &:has(span:empty) {
         display: none;
     }
 
     &--success {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-        text-wrap: nowrap;
-        overflow-x: auto;
+        color: var(--clr-accent);
 
-        @supports (scrollbar-width: thin) {
-            scrollbar-width: thin;
-            scrollbar-color: var(--clr-accent) transparent;
-        }
-
-        > span {
-            padding: 1em;
-    
+        span {
             font-family: var(--ff-mono);
             font-weight: 400;
-    
-            color: var(--clr-accent);
-            background-color: color-mix(in srgb, currentColor, transparent 90%);
-    
-            border-radius: 0.25em;
     
             > a {
                 color: inherit;
@@ -215,9 +206,6 @@ h1#app-title {
 
     &--error, &--info {
         width: fit-content;
-        padding: 1em;
-        background-color: color-mix(in srgb, currentColor, transparent 90%);
-        border-radius: 0.25em;
     }
 
     &--error {

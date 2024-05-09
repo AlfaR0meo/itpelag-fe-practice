@@ -8,6 +8,11 @@ body,
 html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable; // резервирование места под скроллбар при запрете прокрутки страницы
+
+    @supports (scrollbar-width: auto) {
+        scrollbar-width: auto;
+        scrollbar-color: var(--clr-accent) transparent;
+    }
 }
 
 body {

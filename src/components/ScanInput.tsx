@@ -70,10 +70,6 @@ export default function ScanInput() {
                 return;
             }
 
-            if (videoWrapperRef.current) {
-                videoWrapperRef.current.classList.remove('hidden');
-            }
-
             const userMediaConstraints = {
                 video: {
                     frameRate: 30,
@@ -95,6 +91,9 @@ export default function ScanInput() {
             const videoStream = await navigator.mediaDevices.getUserMedia(userMediaConstraints);
 
             if (videoRef.current && videoStream) {
+                if (videoWrapperRef.current) {
+                    videoWrapperRef.current.classList.remove('hidden');
+                }
                 videoRef.current.srcObject = videoStream;
                 videoRef.current.play();
                 detectQRCodeFromVideo(videoStream);

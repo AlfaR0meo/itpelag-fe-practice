@@ -7,7 +7,13 @@ interface ResultProps {
 
 export default function Result({ status, innerText = '' }: ResultProps) {
 
-    const urlify = (text: string): string => {
+    const urlifyAndJsonify = (text: string): string => {
+        try {
+            text = JSON.stringify(JSON.parse(text), null, 4);
+        } catch (error) {
+            console.error(error);
+        }
+
         const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
 
         return text.replace(urlRegex, (url) => {
@@ -17,7 +23,7 @@ export default function Result({ status, innerText = '' }: ResultProps) {
 
     if (status === 'success') {
         return (
-            <div className='result result--success'>Результат: <span dangerouslySetInnerHTML={{ __html: urlify(innerText) }}></span></div>
+            <div className='result result--success'><pre><span dangerouslySetInnerHTML={{ __html: urlifyAndJsonify(innerText) }}></span></pre></div>
         );
     }
     if (status === 'error') {
