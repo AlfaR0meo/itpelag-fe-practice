@@ -19,8 +19,9 @@ export default function ScanInput() {
     const [scanResult, setScanResult] = useState<ReadResult[]>();
     const [error, setError] = useState<string>('');
     const [info, setInfo] = useState<string>('');
+    const [info2, setInfo2] = useState<string>('');
 
-    function detectQRCodeFromVideo() {
+    function detectQRCodeFromVideo(stream: MediaStream) {
         const videoElement = videoRef.current;
         const canvasElement = canvasRef.current;
 
@@ -39,7 +40,7 @@ export default function ScanInput() {
 
                     try {
                         setScanResult(await readBarcodesFromImageData(canvasElementImageData, readerOptions));
-                        setInfo('OKEY');
+                        // setInfo('Нормас, работает');
                     } catch (error: any) {
                         setError(String(error));
                     }
@@ -52,11 +53,10 @@ export default function ScanInput() {
         try {
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 setError('Ваш браузер не поддерживает доступ к камере');
-                console.error('Ваш браузер не поддерживает доступ к камере');
                 return;
             }
 
-            const videoStream = await navigator.mediaDevices.getUserMedia({
+            const userMediaConstraints = {
                 video: {
                     frameRate: 30,
                     facingMode: 'environment',
@@ -72,23 +72,36 @@ export default function ScanInput() {
                     }
                 },
                 audio: false
-            });
+            }
 
-            if (videoRef.current !== null) {
+            const videoStream = await navigator.mediaDevices.getUserMedia(userMediaConstraints);
+
+            if (videoRef.current && videoStream) {
                 videoRef.current.srcObject = videoStream;
                 videoRef.current.play();
+                detectQRCodeFromVideo(videoStream);
             } else return;
 
-            detectQRCodeFromVideo();
-        }
-        catch (error: any) {
+        } catch (error: any) {
             setError(String(error));
+        }
+    }
+
+    function stopScan() {
+        // setInfo2(String(navigator.mediaDevices.getUserMedia()));
+        if (videoRef.current) {
+            videoRef.current.srcObject = null;
         }
     }
 
     return (
         <div className='scan-input'>
             <button onClick={startScan} className='qr-btn qr-btn--scan' type='button'><span>Сканировать</span></button>
+            <button onClick={stopScan} className='qr-btn qr-btn--scan' type='button'><span>Стоп</span></button>
+
+            {error && <div className="result result--error">{error}</div>}
+            {info && <div className="result result--info">{info}</div>}
+            {info2 && <div className="result result--info">{info2}</div>}
 
             <div className="video-wrapper">
                 <span className='top-left'></span>
@@ -99,9 +112,6 @@ export default function ScanInput() {
                 <video ref={videoRef}></video>
                 <canvas ref={canvasRef}></canvas>
             </div>
-
-            {error && <div className="result result--error">{error}</div>}
-            <div className="result result--info">{info}</div>
 
             {scanResult && (scanResult?.length === 0 ?
                 <Result status={'error'} /> :
