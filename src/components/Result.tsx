@@ -15,14 +15,14 @@ export default function Result({ status, innerText = '' }: ResultProps) {
         });
     }
 
-    if (status === 'error') {
-        return (
-            <div className='result result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div>
-        );
-    }
     if (status === 'success') {
         return (
             <div className='result result--success'>Результат: <span dangerouslySetInnerHTML={{ __html: urlify(innerText) }}></span></div>
+        );
+    }
+    if (status === 'error') {
+        return (
+            <div className='result result--error'>Не удалось считать информацию c изображения. Возможно, это не QR-код.</div>
         );
     }
 }
