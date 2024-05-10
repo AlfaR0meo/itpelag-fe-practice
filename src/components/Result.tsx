@@ -10,7 +10,6 @@ export default function Result({ status, innerText = '' }: ResultProps) {
     const urlifyAndJsonify = (text: string): string => {
         try {
             text = JSON.stringify(JSON.parse(text), null, 4);
-            console.log(4);
         } catch { }
 
         const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
