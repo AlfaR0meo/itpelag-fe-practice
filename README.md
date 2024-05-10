@@ -1,5 +1,6 @@
 # Веб-приложение для сканирования QR-кодов
-Web application for QR code scanning
+## GitHub Pages app demo
+https://alfar0meo.github.io/itpelag-fe-practice/
 
 ## Goals
 Create Web application that will allow users to read QR codes via camera or local image upload
