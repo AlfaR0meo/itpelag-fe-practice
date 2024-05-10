@@ -56,7 +56,7 @@ h1#app-title {
 
 
 .scan-input {
-    margin-block-end: 1rem;
+    margin-block-end: 2rem;
 }
 
 .scan-input, .file-input {
@@ -173,6 +173,7 @@ h1#app-title {
 
     pre {
         text-wrap: wrap;
+        word-break: break-all;
     }
 
     &:has(span:empty) {

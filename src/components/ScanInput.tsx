@@ -102,6 +102,7 @@ export default function ScanInput() {
 
                 videoRef.current.srcObject = videoStream;
                 videoRef.current.play(); //? if autoplay..
+
                 detectQRCodeFromVideo(videoStream);
             } else return;
 
