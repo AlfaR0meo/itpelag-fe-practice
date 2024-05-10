@@ -94,8 +94,14 @@ export default function ScanInput() {
                 if (videoWrapperRef.current) {
                     videoWrapperRef.current.classList.remove('hidden');
                 }
+
+                // for IOS black video fix
+                videoRef.current.setAttribute('autoplay', '');
+                videoRef.current.setAttribute('muted', '');
+                videoRef.current.setAttribute('playsinline', '');
+
                 videoRef.current.srcObject = videoStream;
-                videoRef.current.play();
+                videoRef.current.play(); //? if autoplay..
                 detectQRCodeFromVideo(videoStream);
             } else return;
 
