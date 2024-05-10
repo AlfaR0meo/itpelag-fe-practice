@@ -70,6 +70,9 @@ export default function ScanInput() {
                 return;
             }
 
+            setError('');
+            setScanResult(undefined);
+
             const userMediaConstraints = {
                 video: {
                     frameRate: 30,
